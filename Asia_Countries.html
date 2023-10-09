@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Day 7 task</title>
+    </head>
+    <body>
+        <h1>XMLHttpRequest</h1>
+        <h3>Getting all the countries from the Asia continent /region using the Filter function</h3>
+            <script>
+                const req = new XMLHttpRequest()
+                req.open("GET","https://restcountries.com/v3.1/all");
+                req.responseType='json'
+                req.send();
+                req.onload = ()=>{
+                    let responseObj = req.response
+                    let cont = responseObj.filter(countries=>{
+                        return countries.continents== "Asia"
+                    })
+                    let country = cont.map(countries=>{
+                        return countries.name.common
+                    })
+                    console.log(country)
+                }
+                
+                
+            </script>
+    </body>
+
+</html>
