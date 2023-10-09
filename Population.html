@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Day 7 task</title>
+    </head>
+    <body>
+        <h1>XMLHttpRequest</h1>
+        <h3>Printing the total population of countries using reduce function</h3>
+            <script>
+                const req = new XMLHttpRequest()
+                req.open("GET","https://restcountries.com/v3.1/all");
+                req.send();
+                req.responseType= 'json'
+                req.onload = function(){
+                    let responseObj= req.response
+                   let population = responseObj.map(function(item){
+                    return item.population
+                   })
+                   let totalPop = population.reduce(function(a,b){
+                    return a+b
+                   },0)
+                   console.log(totalPop)
+                }
+            </script>
+    </body>
+
+</html>
