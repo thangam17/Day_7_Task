@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Day 7 task</title>
+    </head>
+    <body>
+        <h1>XMLHttpRequest</h1>
+        <h3> Getting all the countries with a population of less than 2 lakhs using Filter function</h3>
+            <script>
+                const req = new XMLHttpRequest()
+                req.responseType = 'json'
+                req.onload = function (){
+                    let responseObj = req.response
+                    let countries = responseObj.filter(function(countries){
+                        return countries.population < 200000
+                    })
+                        countries.forEach(function(country) {
+                            console.log(country.name.common)
+                        });
+                    }
+                
+                req.open("GET","https://restcountries.com/v3.1/all");
+                req.send();
+
+            </script>
+    </body>
+
+</html>
