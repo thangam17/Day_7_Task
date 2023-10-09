@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Day 7 task</title>
+    </head>
+    <body>
+        <h1>XMLHttpRequest</h1>
+        <h3>Printing the country which uses US Dollars as currency</h3>
+            <script>
+                const req = new XMLHttpRequest()
+                req.open("GET","https://restcountries.com/v3.1/all");
+                req.send();
+                req.responseType = 'json'
+                req.onload =function(){
+                   let data = req.response
+                   let countries = data.filter((item)=>(item.currencies !== undefined))
+                   let country = countries.filter((data)=>{
+                    for(let key in data.currencies){
+                        if(data.currencies[key].name === "United States dollar"){
+                            return data
+                        }
+                    }
+                   })
+                   country.forEach(function(country) {
+                        console.log(country.name.common);
+                    });
+                }
+            </script>
+    </body>
+   
+</html>
